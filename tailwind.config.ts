@@ -16,8 +16,8 @@ export default {
         metropolis: ["var(--font-metropolis)", "sans-serif"],
       },
       fontSize: {
-        sm: ["12px", "15px"],
-        base: ["15px", "24px"],
+        sm: ["12px", "16px"],
+        base: ["16px", "24px"],
         lg: ["22px", "30px"],
       },
     },
