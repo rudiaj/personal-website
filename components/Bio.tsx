@@ -2,7 +2,6 @@
 
 import { motion, useTransform, easeInOut, MotionValue } from "framer-motion";
 import { ReactNode, useRef } from "react";
-
 interface ScrollFadeWrapperProps {
   height: number;
   children: ReactNode;

@@ -57,7 +57,7 @@ export default function Home() {
   return (
     <div
       ref={containerRef}
-      className="h-screen overflow-auto scroll-smooth"
+      className="h-dvh overflow-auto scroll-smooth"
       style={{ overflowAnchor: "none" }}
     >
       <main className="max-w-[1252px] mx-auto lg:px-[50px] pb-12 pt-8 grid grid-cols-12">
