@@ -1,49 +1,102 @@
 "use client";
 
-import { EDUCATION, EXPERIENCE, SKILLS } from "@/constants/data";
 import Image from "next/image";
-import { useScroll, motion, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useScroll, motion, useTransform, easeInOut } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import useMeasure from "react-use-measure";
+
+import { EDUCATION, EXPERIENCE, SKILLS } from "@/constants/data";
+import useIsMobile from "@/hooks/useBreakpoint";
+import { ScrollFadeWrapper } from "@/components/Bio";
+import { BioContent } from "@/components/BioContent";
+
+const LOGO_HEIGHT = 87.42;
+const LOGO_WIDTH = 90;
+const LOGO_MARGIN_BOTTOM = 20;
 
 export default function Home() {
   const containerRef = useRef(null);
+  const isMobile = useIsMobile();
+  const [bioPlaceholderRef, { height: bioPlaceholderHeight }] = useMeasure();
   const { scrollY } = useScroll({ container: containerRef });
+  const [isMeasured, setIsMeasured] = useState(false);
 
-  const width = useTransform(scrollY, [0, 100], [90, 45]);
-  const height = useTransform(scrollY, [0, 100], [87.42, 43.71]);
+  const animatedlogoWidth = useTransform(
+    scrollY,
+    [0, 100],
+    [LOGO_WIDTH, LOGO_WIDTH / 2.5],
+    {
+      ease: easeInOut,
+    }
+  );
+
+  const animatedLogoHeight = useTransform(
+    scrollY,
+    [0, 100],
+    [LOGO_HEIGHT, LOGO_HEIGHT / 2.5],
+    {
+      ease: easeInOut,
+    }
+  );
+
+  const animatedlogoMarginBottom = useTransform(
+    scrollY,
+    [0, 100],
+    [LOGO_MARGIN_BOTTOM, 0],
+    {
+      ease: easeInOut,
+    }
+  );
+
+  useEffect(() => {
+    if (bioPlaceholderHeight !== 0 && !isMeasured) {
+      setIsMeasured(true);
+    }
+  }, [bioPlaceholderHeight, isMeasured]);
 
   return (
-    <div ref={containerRef} className="h-screen overflow-auto scroll-smooth">
-      <main className="max-w-[1252px] mx-auto lg:px-[50px] pb-12 pt-8 grid grid-cols-12 gap-x-5">
-        <div className="col-span-12 md:col-span-4 md:mb-0 mb-10 px-4 lg:px-0 sticky top-0 self-start bg-white py-4">
-          <div className="flex gap-5 flex-col">
-            <motion.div style={{ width, height }}>
+    <div
+      ref={containerRef}
+      className="h-screen overflow-auto scroll-smooth"
+      style={{ overflowAnchor: "none" }}
+    >
+      <main className="max-w-[1252px] mx-auto lg:px-[50px] pb-12 pt-8 grid grid-cols-12">
+        <div className="col-span-12 md:col-span-4 md:mb-0 mb-10 px-4 lg:px-0 sticky top-0 self-start py-4 md:py-0 w-full before:absolute before:inset-0 before:backdrop-blur-sm before:[mask-image:linear-gradient(to_bottom,white,white,transparent)] bg-gradient-to-b from-white to-transparent before:-z-10 md:top-8">
+          <div className="relative flex flex-col">
+            <motion.div
+              style={{
+                width: isMobile ? animatedlogoWidth : LOGO_WIDTH,
+                height: isMobile ? animatedLogoHeight : LOGO_HEIGHT,
+                marginBottom: isMobile
+                  ? animatedlogoMarginBottom
+                  : LOGO_MARGIN_BOTTOM,
+              }}
+              className="relative "
+            >
               <Image
                 alt="logo"
                 src="/logo.svg"
-                height={87.42}
-                width={90}
+                fill
                 className="w-full h-full"
                 priority
               />
             </motion.div>
-            <span className="font-bold text-lg tracking-wide">Rudi Aj</span>
-            <div className="flex flex-col">
-              <span className="font-medium text-base tracking-wide">
-                Senior Frontend Engineer (Rijeka, Croatia)
-              </span>
-              <span className="font-medium text-sm tracking-wide text-black/60">
-                10 years of experience specialising in Next.js and React.
-              </span>
-            </div>
-            <div className="flex flex-col">
-              <span className="font-medium text-base tracking-wide">
-                aj.rudi@gmail.com
-              </span>
-              <span className="font-medium text-base tracking-wide">
-                +385 97 792 9943
-              </span>
-            </div>
+
+            {isMeasured && isMobile ? (
+              <ScrollFadeWrapper
+                height={bioPlaceholderHeight}
+                scrollY={scrollY}
+              >
+                <BioContent />
+              </ScrollFadeWrapper>
+            ) : (
+              <div
+                className="flex flex-col overflow-hidden bg-white"
+                ref={bioPlaceholderRef}
+              >
+                <BioContent />
+              </div>
+            )}
           </div>
         </div>
         <div className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0">
