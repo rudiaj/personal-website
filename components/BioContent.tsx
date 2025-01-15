@@ -5,7 +5,7 @@ export const BioContent = () => {
       <span className="font-medium text-base tracking-wide">
         Senior Frontend Engineer (Rijeka, Croatia)
       </span>
-      <span className="font-medium text-sm tracking-wide text-black/60">
+      <span className="font-medium text-sm tracking-wide text-black/60 mb-4">
         10 years of experience specialising in Next.js and React.
       </span>
       <span className="font-medium text-base tracking-wide">

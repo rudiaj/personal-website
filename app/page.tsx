@@ -9,10 +9,40 @@ import { EDUCATION, EXPERIENCE, SKILLS } from "@/constants/data";
 import useIsMobile from "@/hooks/useBreakpoint";
 import { ScrollFadeWrapper } from "@/components/Bio";
 import { BioContent } from "@/components/BioContent";
+import { ExperienceItem } from "@/components/ExperienceItem";
 
 const LOGO_HEIGHT = 87.42;
 const LOGO_WIDTH = 90;
 const LOGO_MARGIN_BOTTOM = 20;
+
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      ease: "easeOut",
+      staggerChildren: 0.25, // Time between animations of each child
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 15, filter: "blur(4px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+      filter: {
+        duration: 0.4,
+      },
+    },
+  },
+};
 
 export default function Home() {
   const containerRef = useRef(null);
@@ -60,8 +90,16 @@ export default function Home() {
       className="h-dvh overflow-auto scroll-smooth"
       style={{ overflowAnchor: "none" }}
     >
-      <main className="max-w-[1252px] mx-auto lg:px-[50px] pb-12 pt-8 grid grid-cols-12">
-        <div className="col-span-12 md:col-span-4 md:mb-0 mb-10 px-4 lg:px-0 sticky top-0 self-start py-4 md:py-0 w-full before:absolute before:inset-0 before:backdrop-blur-sm before:[mask-image:linear-gradient(to_bottom,white,white,transparent)] bg-gradient-to-b from-white to-transparent before:-z-10 md:top-8">
+      <motion.main
+        className="max-w-[1252px] mx-auto lg:px-[50px] pb-12 pt-8 grid grid-cols-12"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <motion.div
+          className="col-span-12 md:col-span-4 md:mb-0 mb-10 px-4 lg:px-0 sticky top-0 self-start py-4 md:py-0 w-full before:absolute before:inset-0 before:backdrop-blur-sm before:[mask-image:linear-gradient(to_bottom,white,white,transparent)] bg-gradient-to-b from-white to-transparent before:-z-20 md:top-8 z-20"
+          variants={itemVariants}
+        >
           <div className="relative flex flex-col">
             <motion.div
               style={{
@@ -71,7 +109,7 @@ export default function Home() {
                   ? animatedlogoMarginBottom
                   : LOGO_MARGIN_BOTTOM,
               }}
-              className="relative "
+              className="relative"
             >
               <Image
                 alt="logo"
@@ -98,55 +136,46 @@ export default function Home() {
               </div>
             )}
           </div>
-        </div>
-        <div className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0">
+        </motion.div>
+        <motion.div
+          className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0"
+          variants={itemVariants}
+        >
           <span className="font-bold text-base tracking-widest uppercase">
             Experience
           </span>
-        </div>
-        <div className="col-span-12 md:col-span-6 flex flex-col gap-6 px-4 lg:px-0 mb-10">
-          {EXPERIENCE.map((exp, index) => (
-            <div key={index} className="flex flex-col">
-              <div className="flex flex-col mb-3">
-                <span className="font-medium text-sm tracking-wide text-black/60">
-                  {exp.date}
-                </span>
-                <span className="font-bold text-base tracking-wide">
-                  {exp.company}
-                </span>
-                <span className="font-medium text-base tracking-wide italic">
-                  {exp.role}
-                </span>
-                {exp.description && (
-                  <span className="font-medium text-base tracking-wide">
-                    {exp.description}
-                  </span>
-                )}
-              </div>
-              <div className="flex flex-col">
-                <ul className="list-disc flex-flex-col gap-2 pl-3">
-                  {exp.tasks.map((task, taskIndex) => (
-                    <li
-                      key={taskIndex}
-                      className="font-medium text-base tracking-wide"
-                    >
-                      {task}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+        </motion.div>
+        <motion.div
+          className="col-span-12 md:col-span-6 flex flex-col gap-6 px-4 lg:px-0 mb-10"
+          variants={itemVariants}
+        >
+          {EXPERIENCE.map((experience, index) => (
+            <ExperienceItem key={index} experience={experience} />
           ))}
-        </div>
+        </motion.div>
         <div className="col-span-12 md:col-span-8 border-b border-black/10 md:col-start-5 mb-10"></div>
-        <div className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0 md:col-start-5">
+        <motion.div
+          className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0 md:col-start-5"
+          initial="hidden"
+          whileInView="visible"
+          variants={itemVariants}
+        >
           <span className="font-bold text-base tracking-widest uppercase">
             Education
           </span>
-        </div>
-        <div className="col-span-12 md:col-span-6 flex flex-col gap-6 px-4 lg:px-0  mb-10 md:col-start-7">
+        </motion.div>
+        <motion.div
+          className="col-span-12 md:col-span-6 flex flex-col gap-6 px-4 lg:px-0  mb-10 md:col-start-7"
+          variants={itemVariants}
+        >
           {EDUCATION.map((edu, index) => (
-            <div key={index} className="flex flex-col">
+            <motion.div
+              key={index}
+              className="flex flex-col"
+              initial="hidden"
+              whileInView="visible"
+              variants={itemVariants}
+            >
               <div className="flex flex-col mb-3">
                 <span className="font-medium text-sm tracking-wide text-black/60">
                   {edu.date}
@@ -158,18 +187,32 @@ export default function Home() {
                   {edu.title}
                 </span>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         <div className="col-span-12 md:col-span-8 border-b border-black/10 md:col-start-5 mb-10"></div>
-        <div className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0 md:col-start-5">
+        <motion.div
+          className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0 md:col-start-5"
+          initial="hidden"
+          whileInView="visible"
+          variants={itemVariants}
+        >
           <span className="font-bold text-base tracking-widest uppercase">
             Skills
           </span>
-        </div>
-        <div className="col-span-12 md:col-span-6 flex flex-col gap-6 px-4 lg:px-0 md:col-start-7">
+        </motion.div>
+        <motion.div
+          className="col-span-12 md:col-span-6 flex flex-col gap-6 px-4 lg:px-0 md:col-start-7"
+          variants={itemVariants}
+        >
           {SKILLS.map((skill, index) => (
-            <div key={index} className="flex flex-col">
+            <motion.div
+              key={index}
+              className="flex flex-col"
+              initial="hidden"
+              whileInView="visible"
+              variants={itemVariants}
+            >
               <div className="flex flex-col">
                 <span className="font-bold text-base tracking-wide">
                   {skill.label}
@@ -187,10 +230,10 @@ export default function Home() {
                   ))}
                 </ul>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
-      </main>
+        </motion.div>
+      </motion.main>
     </div>
   );
 }
