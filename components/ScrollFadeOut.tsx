@@ -8,7 +8,7 @@ interface ScrollFadeWrapperProps {
   scrollY: MotionValue<number>;
 }
 
-export const ScrollFadeWrapper = ({
+export const ScrollFadeOut = ({
   height,
   children,
   scrollY,
@@ -30,7 +30,7 @@ export const ScrollFadeWrapper = ({
 
   return (
     <motion.div
-      className="flex flex-col overflow-hidden bg-white"
+      className="flex flex-col items-start"
       style={{
         opacity: opacity,
         y: bioY,

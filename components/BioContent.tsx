@@ -11,7 +11,7 @@ export const BioContent = () => {
       <span className="font-medium text-base tracking-wide">
         aj.rudi@gmail.com
       </span>
-      <span className="font-medium text-base tracking-wide">
+      <span className="font-medium text-base tracking-wide mb-6">
         +385 97 792 9943
       </span>
     </>

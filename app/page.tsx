@@ -7,11 +7,13 @@ import useMeasure from "react-use-measure";
 
 import { EDUCATION, EXPERIENCE, SKILLS } from "@/constants/data";
 import useIsMobile from "@/hooks/useBreakpoint";
-import { ScrollFadeWrapper } from "@/components/Bio";
+import { ScrollFadeOut } from "@/components/ScrollFadeOut";
 import { BioContent } from "@/components/BioContent";
 import { ExperienceItem } from "@/components/ExperienceItem";
+import { DownloadButton } from "@/components/DownloadButton";
+import { ButtonFadeIn } from "@/components/ButtonFadeIn";
 
-const LOGO_HEIGHT = 87.42;
+const LOGO_HEIGHT = 90;
 const LOGO_WIDTH = 90;
 const LOGO_MARGIN_BOTTOM = 20;
 
@@ -23,7 +25,7 @@ const containerVariants = {
     opacity: 1,
     transition: {
       ease: "easeOut",
-      staggerChildren: 0.25, // Time between animations of each child
+      staggerChildren: 0.25,
     },
   },
 };
@@ -48,7 +50,9 @@ export default function Home() {
   const containerRef = useRef(null);
   const isMobile = useIsMobile();
   const [bioPlaceholderRef, { height: bioPlaceholderHeight }] = useMeasure();
+
   const { scrollY } = useScroll({ container: containerRef });
+
   const [isMeasured, setIsMeasured] = useState(false);
 
   const animatedlogoWidth = useTransform(
@@ -96,11 +100,11 @@ export default function Home() {
         animate="visible"
         variants={containerVariants}
       >
-        <motion.div
-          className="col-span-12 md:col-span-4 md:mb-0 mb-10 px-4 lg:px-0 sticky top-0 self-start py-4 md:py-0 w-full before:absolute before:inset-0 before:backdrop-blur-sm before:[mask-image:linear-gradient(to_bottom,white,white,transparent)] bg-gradient-to-b from-white to-transparent before:-z-20 md:top-8 z-20"
-          variants={itemVariants}
-        >
-          <div className="relative flex flex-col">
+        <div className="col-span-12 md:col-span-4 md:mb-0 mb-10 px-4 lg:px-0 sticky top-0 self-start py-4 md:py-0 w-full before:absolute before:inset-0 before:backdrop-blur-sm before:[mask-image:linear-gradient(to_bottom,white,white,transparent)] bg-gradient-to-b from-white to-transparent before:z-30 md:top-8 z-30">
+          <motion.div
+            className="relative flex flex-col items-start z-30 justify-center"
+            variants={itemVariants}
+          >
             <motion.div
               style={{
                 width: isMobile ? animatedlogoWidth : LOGO_WIDTH,
@@ -119,24 +123,30 @@ export default function Home() {
                 priority
               />
             </motion.div>
-
             {isMeasured && isMobile ? (
-              <ScrollFadeWrapper
-                height={bioPlaceholderHeight}
-                scrollY={scrollY}
-              >
-                <BioContent />
-              </ScrollFadeWrapper>
+              <>
+                <ScrollFadeOut height={bioPlaceholderHeight} scrollY={scrollY}>
+                  <BioContent />
+                  <DownloadButton />
+                </ScrollFadeOut>
+              </>
             ) : (
               <div
-                className="flex flex-col overflow-hidden bg-white"
+                className="flex flex-col overflow-hidden items-start"
                 ref={bioPlaceholderRef}
               >
                 <BioContent />
+                <DownloadButton />
               </div>
             )}
-          </div>
-        </motion.div>
+            {isMobile && (
+              <ButtonFadeIn scrollY={scrollY}>
+                <DownloadButton />
+              </ButtonFadeIn>
+            )}
+          </motion.div>
+        </div>
+
         <motion.div
           className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0"
           variants={itemVariants}
@@ -153,7 +163,10 @@ export default function Home() {
             <ExperienceItem key={index} experience={experience} />
           ))}
         </motion.div>
-        <div className="col-span-12 md:col-span-8 border-b border-black/10 md:col-start-5 mb-10"></div>
+        <motion.div
+          className="col-span-12 md:col-span-8 border-b border-black/10 md:col-start-5 mb-10"
+          variants={itemVariants}
+        ></motion.div>
         <motion.div
           className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0 md:col-start-5"
           initial="hidden"
@@ -190,7 +203,10 @@ export default function Home() {
             </motion.div>
           ))}
         </motion.div>
-        <div className="col-span-12 md:col-span-8 border-b border-black/10 md:col-start-5 mb-10"></div>
+        <motion.div
+          className="col-span-12 md:col-span-8 border-b border-black/10 md:col-start-5 mb-10"
+          variants={itemVariants}
+        ></motion.div>
         <motion.div
           className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0 md:col-start-5"
           initial="hidden"
