@@ -169,7 +169,7 @@ export default function Home() {
             <ExperienceItem key={index} experience={experience} />
           ))}
         </motion.section>
-        <motion.hr
+        <motion.div
           className="col-span-12 md:col-span-8 border-b border-black/10 md:col-start-5 mb-10"
           variants={itemVariants}
         />
@@ -210,7 +210,7 @@ export default function Home() {
             </motion.div>
           ))}
         </motion.section>
-        <motion.hr
+        <motion.div
           className="col-span-12 md:col-span-8 border-b border-black/10 md:col-start-5 mb-10"
           variants={itemVariants}
         />
