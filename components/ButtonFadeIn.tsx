@@ -9,11 +9,11 @@ interface ScrollFadeWrapperProps {
 }
 
 export const ButtonFadeIn = ({ children, scrollY }: ScrollFadeWrapperProps) => {
-  const opacity = useTransform(scrollY, [100, 150], [0, 1], {
+  const opacity = useTransform(scrollY, [100, 300], [0, 1], {
     ease: easeInOut,
   });
 
-  const y = useTransform(scrollY, [100, 150], [-15, 0], {
+  const y = useTransform(scrollY, [100, 300], [-15, 0], {
     ease: easeInOut,
   });
 
