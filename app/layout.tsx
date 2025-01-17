@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 
@@ -74,7 +74,10 @@ export const metadata: Metadata = {
       { url: "/icon.svg", type: "image/svg+xml" },
     ],
   },
-  themeColor: "#ffffff",
+};
+
+export const viewport: Viewport = {
+  themeColor: "ffffff",
 };
 
 export default function RootLayout({
@@ -91,11 +94,14 @@ export default function RootLayout({
         />
         <meta name="format-detection" content="telephone=no, email=no" />
         <meta name="theme-color" content="#ffffff" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta
+          name="mobile-web-app-capable-status-bar-style"
+          content="default"
+        />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+        <meta name="mobile-web-app-capable-title" content="MyWebSite" />
       </head>
       <body className={`${metropolis.variable} antialiased min-h-screen`}>
         {children}
