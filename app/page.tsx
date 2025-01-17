@@ -93,14 +93,19 @@ export default function Home() {
       ref={containerRef}
       className="h-dvh overflow-auto scroll-smooth"
       style={{ overflowAnchor: "none" }}
+      role="document"
     >
       <motion.main
         className="max-w-[1252px] mx-auto lg:px-[50px] pb-12 pt-8 grid grid-cols-12"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
+        role="main"
       >
-        <div className="col-span-12 md:col-span-4 md:mb-0 mb-10 px-4 lg:px-0 sticky top-0 self-start py-4 md:py-0 w-full before:absolute before:inset-0 before:backdrop-blur-sm before:[mask-image:linear-gradient(to_bottom,white,white,transparent)] bg-gradient-to-b from-white to-transparent before:z-30 md:top-8 z-30">
+        <div
+          className="col-span-12 md:col-span-4 md:mb-0 mb-10 px-4 lg:px-0 sticky top-0 self-start py-4 md:py-0 w-full before:absolute before:inset-0 before:backdrop-blur-sm before:[mask-image:linear-gradient(to_bottom,white,white,transparent)] bg-gradient-to-b from-white to-transparent before:z-30 md:top-8 z-30"
+          aria-label="Profile"
+        >
           <motion.div
             className="relative flex flex-col items-start z-30 justify-center"
             variants={itemVariants}
@@ -116,7 +121,7 @@ export default function Home() {
               className="relative"
             >
               <Image
-                alt="logo"
+                alt="Rudi Aj personal logo"
                 src="/logo.svg"
                 fill
                 className="w-full h-full"
@@ -132,7 +137,7 @@ export default function Home() {
               </>
             ) : (
               <div
-                className="flex flex-col overflow-hidden items-start"
+                className="flex flex-col items-start"
                 ref={bioPlaceholderRef}
               >
                 <BioContent />
@@ -147,39 +152,41 @@ export default function Home() {
           </motion.div>
         </div>
 
-        <motion.div
+        <motion.section
           className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0"
           variants={itemVariants}
         >
-          <span className="font-bold text-base tracking-widest uppercase">
+          <h2 className="font-bold text-base tracking-widest uppercase">
             Experience
-          </span>
-        </motion.div>
-        <motion.div
+          </h2>
+        </motion.section>
+        <motion.section
+          aria-label="Experience"
           className="col-span-12 md:col-span-6 flex flex-col gap-6 px-4 lg:px-0 mb-10"
           variants={itemVariants}
         >
           {EXPERIENCE.map((experience, index) => (
             <ExperienceItem key={index} experience={experience} />
           ))}
-        </motion.div>
-        <motion.div
+        </motion.section>
+        <motion.hr
           className="col-span-12 md:col-span-8 border-b border-black/10 md:col-start-5 mb-10"
           variants={itemVariants}
-        ></motion.div>
-        <motion.div
+        />
+        <motion.section
           className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0 md:col-start-5"
           initial="hidden"
           whileInView="visible"
           variants={itemVariants}
         >
-          <span className="font-bold text-base tracking-widest uppercase">
+          <h2 className="font-bold text-base tracking-widest uppercase">
             Education
-          </span>
-        </motion.div>
-        <motion.div
+          </h2>
+        </motion.section>
+        <motion.section
           className="col-span-12 md:col-span-6 flex flex-col gap-6 px-4 lg:px-0  mb-10 md:col-start-7"
           variants={itemVariants}
+          aria-label="Education"
         >
           {EDUCATION.map((edu, index) => (
             <motion.div
@@ -202,22 +209,22 @@ export default function Home() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-        <motion.div
+        </motion.section>
+        <motion.hr
           className="col-span-12 md:col-span-8 border-b border-black/10 md:col-start-5 mb-10"
           variants={itemVariants}
-        ></motion.div>
-        <motion.div
+        />
+        <motion.section
           className="col-span-12 md:col-span-2 md:mb-0 mb-4 px-4 lg:px-0 md:col-start-5"
           initial="hidden"
           whileInView="visible"
           variants={itemVariants}
         >
-          <span className="font-bold text-base tracking-widest uppercase">
+          <h2 className="font-bold text-base tracking-widest uppercase">
             Skills
-          </span>
-        </motion.div>
-        <motion.div
+          </h2>
+        </motion.section>
+        <motion.section
           className="col-span-12 md:col-span-6 flex flex-col gap-6 px-4 lg:px-0 md:col-start-7"
           variants={itemVariants}
         >
@@ -230,25 +237,25 @@ export default function Home() {
               variants={itemVariants}
             >
               <div className="flex flex-col">
-                <span className="font-bold text-base tracking-wide">
+                <h3 className="font-bold text-base tracking-wide">
                   {skill.label}
-                </span>
+                </h3>
               </div>
               <div className="flex flex-col">
                 <ul className="flex flex-wrap">
                   {skill.items.map((item, itemIndex) => (
                     <li
                       key={itemIndex}
-                      className="font-medium text-base tracking-wide"
+                      className="font-medium text-base tracking-wide after:content-[',\00a0'] last:after:content-none"
                     >
-                      {item},&nbsp;
+                      {item}
                     </li>
                   ))}
                 </ul>
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </motion.section>
       </motion.main>
     </div>
   );
