@@ -39,12 +39,12 @@ export const ExperienceItem = ({
       }}
       variants={itemVariants}
     >
-      <div className="flex flex-col mb-3">
+      <div className="flex flex-col mb-2">
         <span className="font-medium text-sm tracking-wide text-black/60">
           {date}
         </span>
         <span className="font-bold text-base tracking-wide">{company}</span>
-        <span className="font-medium text-base tracking-wide italic">
+        <span className="font-medium text-base tracking-wide italic mb-2">
           {role}
         </span>
         {description && (
@@ -54,7 +54,7 @@ export const ExperienceItem = ({
         )}
       </div>
       <div className="flex flex-col">
-        <ul className="list-disc flex-flex-col gap-2 pl-3">
+        <ul className="list-disc flex flex-col gap-1 pl-3">
           {tasks.map((task, taskIndex) => (
             <li key={taskIndex} className="font-medium text-base tracking-wide">
               {task}

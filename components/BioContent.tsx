@@ -12,7 +12,7 @@ export const BioContent = () => {
       <div className="flex flex-col items-start">
         <a
           href="mailto:aj.rudi@gmail.com"
-          className="mb-2 font-medium text-base tracking-wide hover:text-black/70 transition-colors duration-200"
+          className="font-medium text-base tracking-wide hover:text-black/70 transition-colors duration-200"
           aria-label="Email me"
         >
           aj.rudi@gmail.com

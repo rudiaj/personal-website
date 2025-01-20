@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     "Frontend Engineer, Next.js, React, Web Development, JavaScript, TypeScript, Croatia",
   authors: [{ name: "Rudi Aj" }],
   creator: "Rudi Aj",
-  metadataBase: new URL("https://your-domain.com"), // Add your domain
+  metadataBase: new URL("https://www.rudiaj.dev"),
   alternates: {
     canonical: "/",
   },

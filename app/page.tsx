@@ -162,7 +162,7 @@ export default function Home() {
         </motion.section>
         <motion.section
           aria-label="Experience"
-          className="col-span-12 md:col-span-6 flex flex-col gap-6 px-4 lg:px-0 mb-10"
+          className="col-span-12 md:col-span-6 flex flex-col gap-8 px-4 lg:px-0 mb-10"
           variants={itemVariants}
         >
           {EXPERIENCE.map((experience, index) => (
@@ -184,7 +184,7 @@ export default function Home() {
           </h2>
         </motion.section>
         <motion.section
-          className="col-span-12 md:col-span-6 flex flex-col gap-6 px-4 lg:px-0  mb-10 md:col-start-7"
+          className="col-span-12 md:col-span-6 flex flex-col gap-8 px-4 lg:px-0  mb-10 md:col-start-7"
           variants={itemVariants}
           aria-label="Education"
         >
@@ -196,7 +196,7 @@ export default function Home() {
               whileInView="visible"
               variants={itemVariants}
             >
-              <div className="flex flex-col mb-3">
+              <div className="flex flex-col ">
                 <span className="font-medium text-sm tracking-wide text-black/60">
                   {edu.date}
                 </span>
@@ -225,7 +225,7 @@ export default function Home() {
           </h2>
         </motion.section>
         <motion.section
-          className="col-span-12 md:col-span-6 flex flex-col gap-6 px-4 lg:px-0 md:col-start-7"
+          className="col-span-12 md:col-span-6 flex flex-col gap-8 px-4 lg:px-0 md:col-start-7"
           variants={itemVariants}
         >
           {SKILLS.map((skill, index) => (

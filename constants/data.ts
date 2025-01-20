@@ -140,7 +140,7 @@ export const SKILLS = [
       "Guitar",
       "Weightlifting",
       "Jiu-Jitsu",
-      "Logo design",
+      "Logo Design",
       "Seinfeld",
     ],
   },
