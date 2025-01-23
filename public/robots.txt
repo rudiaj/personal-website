@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rudiaj.dev/sitemap.xml
