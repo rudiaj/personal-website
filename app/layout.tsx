@@ -88,8 +88,12 @@ export default function RootLayout({
           name="mobile-web-app-capable-status-bar-style"
           content="default"
         />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
         <meta name="mobile-web-app-capable-title" content="MyWebSite" />
       </head>
       <body className={`${metropolis.variable} antialiased min-h-screen`}>
