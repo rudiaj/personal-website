@@ -1,16 +1,16 @@
 export const EXPERIENCE = [
   {
-    date: "Apr 2024 - Jan 2025 · 9 mos · Remote",
+    date: "Apr 2024 - Jan 2025 · 10 mos · Remote",
     company: "PlayAI",
     role: "Frontend Engineer",
     description: "AI voice platform for TTS models backed by Y Combinator",
     tasks: [
-      'Over nine months, I implemented SEO strategies that achieved top-3 Google search rankings for high-impact keywords like "AI voice generator" and "text to speech." Additionally, I enhanced Play.ht\'s site performance by 56% and upgraded the entire project architecture from Next.js pages to the app router.',
+      'Over nine months, I implemented SEO strategies that achieved top-3 Google search rankings for high-impact keywords like "AI voice generator" and "text to speech.", leading to 300% increase in organic traffic (50K to 300K monthly visitors). Additionally, I enhanced Play.ht\'s site performance by 56% and upgraded the entire project architecture from Next.js pages to the app router.',
       "Refactored the Play.ai project, transitioning from a static Next.js setup to a fully customized Payload CMS architecture.",
     ],
   },
   {
-    date: "May 2023 - Apr 2024 · 11 mos · Remote",
+    date: "May 2023 - Apr 2024 · 1 yr · Remote",
     company: "BRIX Holdings",
     role: "Frontend Engineer",
     description:
@@ -57,6 +57,15 @@ export const EXPERIENCE = [
       "Worked closely with AutoScout24 in-house team, transforming their monolith-based structure to a modern React Web App.",
       "Guided and mentored junior developers through coding best practices and project workflows.",
       "Contributed as a core developer on in-house product - accounting app built using MERN stack.",
+    ],
+  },
+  {
+    date: "Mar 2017 - Sep 2017 · 7  mos · Belgrade · On-site",
+    company: "Digital Cube",
+    role: "Frontend Engineer",
+    description: "Digital agency",
+    tasks: [
+      "Worked as a contributor on a fitness tracking app powered by AngularJS.",
     ],
   },
   {
