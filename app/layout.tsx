@@ -32,10 +32,14 @@ export const metadata: Metadata = {
     "Frontend Engineer, Next.js, React, Web Development, JavaScript, TypeScript, Croatia",
   authors: [{ name: "Rudi Aj" }],
   creator: "Rudi Aj",
-  metadataBase: new URL("https://www.rudiaj.dev"),
+
+  // Changed from www.rudiaj.dev to rudiaj.dev to match Vercel's redirect behavior
+  metadataBase: new URL("https://rudiaj.dev"),
+
   alternates: {
     canonical: "/",
   },
+
   openGraph: {
     title: "Rudi Aj | Senior Frontend Engineer",
     description:
@@ -52,21 +56,67 @@ export const metadata: Metadata = {
       },
     ],
   },
+
   twitter: {
     title: "Rudi Aj | Senior Frontend Engineer",
     description: "Senior Frontend Engineer specializing in Next.js and React",
+    card: "summary_large_image",
     images: ["/twitter-image.png"],
   },
+
+  // Moved from manual meta tags
+  formatDetection: {
+    telephone: false,
+    email: false,
+  },
+
+  // Enhanced icons configuration
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
       { url: "/icon.svg", type: "image/svg+xml" },
     ],
+    apple: {
+      url: "/apple-touch-icon.png",
+      sizes: "180x180",
+    },
   },
+
+  // Added from manual meta tags
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Rudi Aj | Senior Frontend Engineer",
+  },
+
+  // Added for better SEO
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  // Added for verification
+  verification: {
+    google: "fW1S8AqlU1ozu03LIQZq-WRcNhJspJQe_iPMX4Phkv4", // Your existing Google verification code
+  },
+
+  // Added for better SEO
+  applicationName: "Rudi Aj | Personal Website",
+  referrer: "origin-when-cross-origin",
+  category: "portfolio",
 };
 
 export const viewport: Viewport = {
-  themeColor: "ffffff",
+  width: "device-width",
+  initialScale: 1.0,
+  viewportFit: "cover",
+  themeColor: "#ffffff",
 };
 
 export default function RootLayout({
@@ -76,26 +126,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="overflow-hidden" suppressHydrationWarning>
-      <head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-        />
-        <meta name="format-detection" content="telephone=no, email=no" />
-        <meta name="theme-color" content="#ffffff" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta
-          name="mobile-web-app-capable-status-bar-style"
-          content="default"
-        />
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <meta name="mobile-web-app-capable-title" content="MyWebSite" />
-      </head>
       <body className={`${metropolis.variable} antialiased min-h-screen`}>
         {children}
       </body>
