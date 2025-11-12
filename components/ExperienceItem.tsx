@@ -20,6 +20,7 @@ interface ExperienceItemProps {
   experience: {
     date: string;
     company: string;
+    url?: string;
     role: string;
     description?: string;
     tasks: string[];
@@ -27,7 +28,7 @@ interface ExperienceItemProps {
 }
 
 export const ExperienceItem = ({
-  experience: { date, company, role, description, tasks },
+  experience: { date, company, url, role, description, tasks },
 }: ExperienceItemProps) => {
   return (
     <motion.div
@@ -43,7 +44,18 @@ export const ExperienceItem = ({
         <span className="font-medium text-sm tracking-wide text-black/60">
           {date}
         </span>
-        <span className="font-bold text-base tracking-wide">{company}</span>
+        {url ? (
+          <a
+            href={url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-base tracking-wide hover:underline"
+          >
+            {company}
+          </a>
+        ) : (
+          <span className="font-bold text-base tracking-wide">{company}</span>
+        )}
         <span className="font-medium text-base tracking-wide italic mb-2">
           {role}
         </span>
